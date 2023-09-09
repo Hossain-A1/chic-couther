@@ -2,9 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-.wrapper{
-  @apply container mx-auto px-0 md:px-5
+.wrapper {
+  @apply container mx-auto px-0 md:px-5;
 }
-.section-p{
-  @apply py-20 md:py-10
+.section-p {
+  @apply py-20 md:py-10;
+}
+.nav-item {
+  @apply relative;
+}
+
+.nav-item::after {
+  @apply absolute w-0 h-[1px] content-[""] bg-slate-800 left-1/2 bottom-0 -translate-x-1/2 duration-300;
+}
+
+.nav-item:hover::after {
+  @apply w-full;
 }
