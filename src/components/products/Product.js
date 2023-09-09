@@ -1,14 +1,15 @@
-// import { Image } from "/react";
 
-// const Product = ({ title, image }) => {
-//   return (
-//     <div className=''>
-//       <div className='image'>
-//         <Image src={image} alt={name} width={320} height={640} priority />
-//       </div>
-//       <h3>{title}</h3>
-//     </div>
-//   );
-// };
+const Product = ({ title, image }) => {
+  return (
+    <div className=''>
+      <div className=' shadow-sm'>
+   <figure className="w-[10rem] h-[12rem]   overflow-hidden">
+    <img src={image} alt={title} className="w-full h-full object-fill cursor-pointer"/>
+   </figure>
+      <h3 className="h-12">{title}</h3>
+      </div>
+    </div>
+  );
+};
 
-// export default Product;
+export default Product;

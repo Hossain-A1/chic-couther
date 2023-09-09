@@ -7,12 +7,15 @@ const AllProducts = () => {
   console.log(products);
 
   return (
-    <section className='bg-slate-700 h-screen w-full'>
-    <div>
-    {products.length > 0 &&
-        products?.map((singleProduct) =><Product key={singleProduct.id} {...singleProduct} />)}
-        <h1>hello</h1>
-    </div>
+    <section className=''>
+      <div className='grid grid-cols-3 gap-10 items-center'>
+        {products.length > 0 &&
+          products
+            .filter((el) => el.category === "men's clothing")
+            .map((singleProduct) => (
+              <Product key={singleProduct.id} {...singleProduct} />
+            ))}
+      </div>
     </section>
   );
 };
