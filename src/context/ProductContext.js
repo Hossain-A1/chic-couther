@@ -4,7 +4,9 @@ import axios from "axios";
 
 const initialState = {
   isLoading:false,
-  products: {},
+  isError:false,
+  products: [],
+  product:{}
 };
 
 export const ProductContext = createContext();
@@ -17,7 +19,6 @@ export const ProductContextProvider = ({ children }) => {
   const getAllProducts = async (url) => {
     try {
       const res = await axios.get(url);
-
       const products = await res.data;
       dispatch({ type: "GET_ALL_PRODUCTS", payload: products });
     } catch (error) {
@@ -25,11 +26,27 @@ export const ProductContextProvider = ({ children }) => {
     }
   };
 
+  //========== get single product============//
+  const getSingleProduct = async(url)=>{
+
+    dispatch({type:"IS_LOADING"})
+    try {
+const res = await axios.get(url)
+
+const product = await res.data
+dispatch({type:'GET_A_PRODUCT',payload:product})
+    } catch (error) {
+      dispatch({type:"IS_ERROR"})
+    }
+
+  }
+
   useEffect(() => {
+
     getAllProducts(API);
   }, []);
   return (
-    <ProductContext.Provider value={{ ...state ,getAllProducts}}>
+    <ProductContext.Provider value={{ ...state,getSingleProduct }}>
       {children}
     </ProductContext.Provider>
   );

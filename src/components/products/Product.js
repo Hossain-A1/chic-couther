@@ -1,13 +1,15 @@
+import { Link } from "react-router-dom";
 
-const Product = ({ title, image }) => {
+const Product = ({product}) => {
+
   return (
     <div className=''>
-      <div className=' shadow-sm'>
+      <Link to={`/singleProduct/${product.id}`} className=' shadow-sm'>
    <figure className="w-[10rem] h-[12rem]   overflow-hidden">
-    <img src={image} alt={title} className="w-full h-full object-fill cursor-pointer"/>
+    <img src={product.image} alt={product.title} className="w-full h-full object-fill cursor-pointer"/>
    </figure>
-      <h3 className="h-12">{title}</h3>
-      </div>
+      <h3 className="h-12">{product.title}</h3>
+      </Link>
     </div>
   );
 };
