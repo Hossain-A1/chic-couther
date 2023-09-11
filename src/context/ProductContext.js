@@ -3,10 +3,14 @@ import { productReducer } from "../reducer/productReducer";
 import axios from "axios";
 
 const initialState = {
-  isLoading:false,
-  isError:false,
+  isLoading: false,
+  isError: false,
   products: [],
-  product:{}
+  product: [],
+  filter_search: {
+    text: "",
+    title: "",
+  },
 };
 
 export const ProductContext = createContext();
@@ -27,26 +31,38 @@ export const ProductContextProvider = ({ children }) => {
   };
 
   //========== get single product============//
-  const getSingleProduct = async(url)=>{
-
-    dispatch({type:"IS_LOADING"})
+  const getSingleProduct = async (url) => {
+    dispatch({ type: "IS_LOADING" });
     try {
-const res = await axios.get(url)
+      const res = await axios.get(url);
 
-const product = await res.data
-dispatch({type:'GET_A_PRODUCT',payload:product})
+      const product = await res.data;
+      dispatch({ type: "GET_A_PRODUCT", payload: product });
     } catch (error) {
-      dispatch({type:"IS_ERROR"})
+      dispatch({ type: "IS_ERROR" });
     }
+  };
+  // ===========================//
+  const handleSearchProducts = (e) => {
+    let name = e.target.name;
+    let userValue = e.target.value;
 
-  }
+    dispatch({ type: "PRODUCT_SEARCH", payload: { name, userValue } });
+  };
 
   useEffect(() => {
+    dispatch({ type: "SEARCHING_PRODUCTS" });
+    getAllProducts(API);
+  }, [state.filter_search]);
 
+
+  useEffect(() => {
     getAllProducts(API);
   }, []);
   return (
-    <ProductContext.Provider value={{ ...state,getSingleProduct }}>
+    <ProductContext.Provider
+      value={{ ...state, getSingleProduct, handleSearchProducts }}
+    >
       {children}
     </ProductContext.Provider>
   );

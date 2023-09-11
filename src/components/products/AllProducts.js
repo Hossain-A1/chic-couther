@@ -3,8 +3,7 @@ import { useProductContext } from "../../hooks/useProductContext";
 import Product from "./Product";
 
 const AllProducts = () => {
-  const { products} = useProductContext();
-
+  const { products } = useProductContext();
 
   return (
     <section className=''>
@@ -12,9 +11,7 @@ const AllProducts = () => {
         {products.length > 0 &&
           products
             .filter((el) => el.category === "men's clothing")
-            .map((product) => (
-              <Product key={product.id} product={product} />
-            ))}
+            .map((product) => <Product key={product.id} {...product} />)}
       </div>
     </section>
   );
