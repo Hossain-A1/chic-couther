@@ -9,9 +9,7 @@ const AllProducts = () => {
     <section className=''>
       <div className='grid grid-cols-3 gap-10 items-center'>
         {products.length > 0 &&
-          products
-            .filter((el) => el.category === "men's clothing")
-            .map((product) => <Product key={product.id} {...product} />)}
+          products.map((product) => <Product key={product.id} {...product} />)}
       </div>
     </section>
   );

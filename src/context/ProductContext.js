@@ -6,7 +6,9 @@ const initialState = {
   isLoading: false,
   isError: false,
   products: [],
-  product: [],
+  product: {},
+  prduct_loading:false,
+  product_error:false,
   filter_search: {
     text: "",
     title: "",
@@ -21,25 +23,26 @@ export const ProductContextProvider = ({ children }) => {
 
   //======== get all products==========//
   const getAllProducts = async (url) => {
+    dispatch({ type: "IS_LOADING" });
     try {
       const res = await axios.get(url);
       const products = await res.data;
       dispatch({ type: "GET_ALL_PRODUCTS", payload: products });
     } catch (error) {
-      dispatch({ type: "PRODUCTS_ERROR" });
+      dispatch({ type: "IS_ERROR" });
     }
   };
 
   //========== get single product============//
   const getSingleProduct = async (url) => {
-    dispatch({ type: "IS_LOADING" });
+    dispatch({ type: "IS_PRODUCT_LOADING" });
     try {
       const res = await axios.get(url);
 
       const product = await res.data;
       dispatch({ type: "GET_A_PRODUCT", payload: product });
     } catch (error) {
-      dispatch({ type: "IS_ERROR" });
+      dispatch({ type: "IS_PRODUCT_ERROR" });
     }
   };
   // ===========================//

@@ -5,12 +5,6 @@ export const productReducer = (state, action) => {
         ...state,
         isLoading: true,
       };
-    case "IS_ERROR":
-      return {
-        ...state,
-        isLoading: false,
-        isError: true,
-      };
 
     case "GET_ALL_PRODUCTS":
       return {
@@ -18,39 +12,58 @@ export const productReducer = (state, action) => {
         isLoading: true,
         products: action.payload,
       };
-    case "GET_A_PRODUCT":
+
+    case "IS_ERROR":
       return {
         ...state,
         isLoading: false,
+        isError: true,
+      };
+
+    case "IS_PRODUCT_LOADING":
+      return {
+        ...state,
+        product_loading: true,
+      };
+    case "GET_A_PRODUCT":
+      return {
+        ...state,
+        product_loading: false,
         product: action.payload,
       };
 
-      case "PRODUCT_SEARCH":
-        const { name, userValue } = action.payload
-        return {
-          ...state,
-          filter_search: {
-            ...state.filter_search,
-  
-            [name]: userValue,
-          },
-        };
+    case "IS_PRODUCT_ERROR":
+      return {
+        ...state,
+        prduct_loading: false,
+        product_error: true,
+      };
+    case "PRODUCT_SEARCH":
+      const { name, userValue } = action.payload;
+      return {
+        ...state,
+        filter_search: {
+          ...state.filter_search,
 
-        case "SEARCHING_PRODUCTS":
-          let {product} = state
-          let copyArr = [...product]
-          const { text ,title} = state.filter_search;
+          [name]: userValue,
+        },
+      };
 
-  if (text) {
+    case "SEARCHING_PRODUCTS":
+      let { products } = state;
+      let copyArr = [...products];
+      const { text, title } = state.filter_search;
+
+      if (text) {
         copyArr = copyArr.filter((el) => {
           return el.name.toLowerCase().includes(text);
         });
       }
 
-          return{
-            ...state,
-            product:copyArr
-          }
+      return {
+        ...state,
+        product: copyArr,
+      };
     default:
       return state;
   }
