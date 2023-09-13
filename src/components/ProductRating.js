@@ -20,11 +20,9 @@ const ProductRating = ({ rating }) => {
     <div>
       <h2 className='flex justify-start gap-1 text-[1rem] items-center text-yellow-500'>
         {indexStart}{" "}
-        <span className='text-black  text-sm'>
-          ({rating?.count}reviews)
-        </span>{" "}
+        <span className='text-black  text-sm'>({rating?.count}reviews)</span>{" "}
       </h2>
-      <span className="text-sm">Rating: ({rating?.rate})</span>
+      <span className='text-sm'>Rating: {rating?.rate}</span>
     </div>
   );
 };

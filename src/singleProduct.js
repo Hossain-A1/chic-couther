@@ -9,7 +9,7 @@ const singleData = "https://fakestoreapi.com/products";
 const SingleProduct = () => {
   const { id } = useParams();
 
-  const { getSingleProduct, product , prduct_loading} = useProductContext();
+  const { getSingleProduct, product , product_loading} = useProductContext();
 
   const { title, price, description, image, rating } = product;
 
@@ -17,9 +17,12 @@ const SingleProduct = () => {
     getSingleProduct(`${singleData}/${id}`);
   }, [id]);
 
+  if(product_loading){
+    return <span>Loading...</span>
+  }
+
   return (
     <div className='wrapper section-p h-screen'>
-      {prduct_loading && <p>Loading...</p> }
       <div className='grid grid-cols-2 gap-5'>
         <div className='col-span-1 flex justify-center items-center'>
           <figure className='w-[14rem] h-[16rem]   overflow-hidden'>

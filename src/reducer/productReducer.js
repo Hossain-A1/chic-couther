@@ -38,32 +38,7 @@ export const productReducer = (state, action) => {
         prduct_loading: false,
         product_error: true,
       };
-    case "PRODUCT_SEARCH":
-      const { name, userValue } = action.payload;
-      return {
-        ...state,
-        filter_search: {
-          ...state.filter_search,
 
-          [name]: userValue,
-        },
-      };
-
-    case "SEARCHING_PRODUCTS":
-      let { products } = state;
-      let copyArr = [...products];
-      const { text, title } = state.filter_search;
-
-      if (text) {
-        copyArr = copyArr.filter((el) => {
-          return el.name.toLowerCase().includes(text);
-        });
-      }
-
-      return {
-        ...state,
-        product: copyArr,
-      };
     default:
       return state;
   }

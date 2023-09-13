@@ -7,15 +7,13 @@ const initialState = {
   isError: false,
   products: [],
   product: {},
-  prduct_loading:false,
-  product_error:false,
-  filter_search: {
-    text: "",
-    title: "",
-  },
+  product_loading: false,
+  product_error: false,
+ 
 };
 
 export const ProductContext = createContext();
+
 const API = "https://fakestoreapi.com/products";
 // -------------------------------------------------------------//
 export const ProductContextProvider = ({ children }) => {
@@ -45,26 +43,13 @@ export const ProductContextProvider = ({ children }) => {
       dispatch({ type: "IS_PRODUCT_ERROR" });
     }
   };
-  // ===========================//
-  const handleSearchProducts = (e) => {
-    let name = e.target.name;
-    let userValue = e.target.value;
-
-    dispatch({ type: "PRODUCT_SEARCH", payload: { name, userValue } });
-  };
-
-  useEffect(() => {
-    dispatch({ type: "SEARCHING_PRODUCTS" });
-    getAllProducts(API);
-  }, [state.filter_search]);
-
 
   useEffect(() => {
     getAllProducts(API);
   }, []);
   return (
     <ProductContext.Provider
-      value={{ ...state, getSingleProduct, handleSearchProducts }}
+      value={{ ...state, getSingleProduct }}
     >
       {children}
     </ProductContext.Provider>

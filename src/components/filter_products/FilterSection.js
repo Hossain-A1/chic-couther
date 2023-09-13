@@ -1,16 +1,16 @@
-import { useProductContext } from "../../hooks/useProductContext";
+import { useFilterContext } from "../../hooks/useFilterContext";
 
 const FilterSection = () => {
   const {
     handleSearchProducts,
-    filter_search: { text },
-  } = useProductContext();
+    filters: { text },
+  } = useFilterContext();
   return (
     <div className='border h-screen w-full'>
       <form onSubmit={(e) => e.preventDefault()}>
         <input
           type='text'
-          name='text'
+          title="text"
           value={text}
           placeholder='Search'
           className='py-1 px-4 outline-none border border-violet-500'
