@@ -1,18 +1,16 @@
-import React from "react";
-import { useProductContext } from "../../hooks/useProductContext";
-import Product from "./Product";
+import { useFilterContext } from "../../hooks/useFilterContext";
+import GridView from "../GridView";
+import ListView from "../ListView";
 
 const AllProducts = () => {
-  const { products } = useProductContext();
+  const { filter_products, grid_view } = useFilterContext();
 
-  return (
-    <section className=''>
-      <div className='grid grid-cols-3 gap-10 items-center'>
-        {products.length > 0 &&
-          products.map((product) => <Product key={product.id} {...product} />)}
-      </div>
-    </section>
-  );
+  if (grid_view) {
+    return <GridView products={filter_products} />;
+  }
+  if (!grid_view) {
+    return <ListView products={filter_products} />;
+  }
 };
 
 export default AllProducts;

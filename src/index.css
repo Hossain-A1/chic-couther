@@ -19,3 +19,37 @@
 .nav-item:hover::after {
   @apply w-full;
 }
+
+
+.nav-lists {
+  @apply flex justify-between items-center gap-5;
+}
+.nav-lists {
+  @apply max-md:w-full max-md:h-full max-md:absolute max-md:top-0 max-md:left-0 max-md:bg-slate-100 max-md:flex max-md:justify-center max-md:items-center max-md:flex-col max-md:opacity-0 max-md:invisible max-md:translate-x-0 origin-top h-full;
+}
+
+.active .nav-lists {
+  @apply max-md:visible max-md:opacity-100 max-md:translate-x-0 max-md:z-[9999]   h-full;
+}
+
+.mobile-navber-btn {
+  @apply hidden bg-transparent cursor-pointer border-none max-md:inline-block max-md:z-[9999] max-md:border;
+}
+
+.mobile-navber-icon[name="close-outline"] {
+  @apply hidden max-md:text-4xl max-md:text-black;
+}
+
+.active .mobile-navber-icon {
+  @apply max-md:hidden max-md:text-4xl max-md:absolute max-md:top-[5%] max-md:right-[5%] max-md:text-black max-md:z-[9999];
+}
+.close-outline {
+  @apply hidden;
+}
+.active .close-outline {
+  @apply max-md:inline-block;
+}
+
+.active-color{
+  @apply opacity-100
+}

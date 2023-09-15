@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import { useProductContext } from "./hooks/useProductContext";
 import ProductRating from "./components/ProductRating";
 import { CurrencyFormatter } from "./shared/CurrencyFormatter";
+import PageNavigation from "./components/PageNavigation ";
+
 
 const singleData = "https://fakestoreapi.com/products";
 
@@ -23,6 +25,7 @@ const SingleProduct = () => {
 
   return (
     <div className='wrapper section-p h-screen'>
+      <PageNavigation product={product} />
       <div className='grid grid-cols-2 gap-5'>
         <div className='col-span-1 flex justify-center items-center'>
           <figure className='w-[14rem] h-[16rem]   overflow-hidden'>

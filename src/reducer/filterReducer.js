@@ -6,9 +6,21 @@ export const filterReducer = (state, action) => {
         filter_products: [...action.payload],
         all_products: [...action.payload],
       };
-      
+
+    case "GRID_VIEW":
+      return {
+        ...state,
+        grid_view: true,
+      };
+    case "LIST_VIEW":
+      return {
+        ...state,
+        grid_view: false,
+      };
+
     case "PRODUCT_SEARCH":
       const { title, userValue } = action.payload;
+
       return {
         ...state,
         filters: {
@@ -22,11 +34,9 @@ export const filterReducer = (state, action) => {
       let copyArr = [...all_products];
       const { text } = state.filters;
 
-      if (text) {
-        copyArr = copyArr.filter((el) => {
-          return el.title.toLowerCase().includes(text);
-        });
-      }
+      copyArr = copyArr.filter((item) => {
+        return item.title.toLowerCase().includes(text);
+      });
 
       return {
         ...state,

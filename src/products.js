@@ -1,5 +1,6 @@
 import FilterSection from "./components/filter_products/FilterSection";
 import AllProducts from "./components/products/AllProducts";
+import SortProduct from "./components/sort/SortProduct";
 
 const ProductsPage = () => {
   
@@ -10,9 +11,9 @@ const ProductsPage = () => {
           <FilterSection />
         </div>
 
-        <div className='lg:col-span-3 grid-cols-2 items-center'>
+        <div className='lg:col-span-3 md:grid-cols-2 col-span-1 items-center'>
           <div className='sort'>
-        
+        <SortProduct/>
           </div>
           <div className='main-products'>
             <AllProducts />
