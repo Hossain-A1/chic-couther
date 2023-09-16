@@ -7,11 +7,15 @@ const initialState = {
   isLoading: false,
   isError: false,
   grid_view: true,
+  sort_options: "highest",
   all_products: [],
   filter_products: [],
   filters: {
     text: "",
     category: "All",
+    maxPrice: 0,
+    price: 0,
+    minPrice: 0,
   },
 };
 
@@ -36,9 +40,15 @@ export const FilterContextProvider = ({ children }) => {
     return dispatch({ type: "PRODUCT_SEARCH", payload: { title, userValue } });
   };
 
+  // ===============sort item==================//
+  const handleSortItem = (e) => {
+    let value = e.target.value;
+    return dispatch({ type: "SORT_OPTION_ITEM", payload: value });
+  };
   useEffect(() => {
+    dispatch({ type: "SORT_PRODUCTS" });
     dispatch({ type: "FILTER_PRODUCTS" });
-  }, [products, state.filters]);
+  }, [products, state.filters, state.sort_options]);
 
   useEffect(() => {
     dispatch({ type: "LOAD_FILTER_PRODUCTS", payload: products });
@@ -46,7 +56,13 @@ export const FilterContextProvider = ({ children }) => {
 
   return (
     <FilterContext.Provider
-      value={{ ...state, handleSearchProducts, handleGridView, handleListView }}
+      value={{
+        ...state,
+        handleSearchProducts,
+        handleGridView,
+        handleListView,
+        handleSortItem,
+      }}
     >
       {children}
     </FilterContext.Provider>

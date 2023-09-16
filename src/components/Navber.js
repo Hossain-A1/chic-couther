@@ -54,11 +54,11 @@ const Navber = () => {
           </li>
           <li className=''>
             <NavLink
-              to='/login'
+              to='/signin'
               onClick={() => setIcon(false)}
               className='max-md:text-xl nav-item'
             >
-              login
+              sign-up
             </NavLink>
           </li>
           <li className='relative'>

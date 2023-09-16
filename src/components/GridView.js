@@ -1,4 +1,4 @@
-import Product from "./Product";
+import Product from "./products/Product";
 
 const GridView = ({ products }) => {
   return (
