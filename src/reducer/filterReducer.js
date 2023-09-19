@@ -21,7 +21,6 @@ export const filterReducer = (state, action) => {
         grid_view: false,
       };
 
-      
     case "SORT_OPTION_ITEM":
       return {
         ...state,

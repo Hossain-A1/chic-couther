@@ -40,23 +40,40 @@ export const cartReducer = (state, action) => {
         cart: [...state.cart, cartProduct],
       };
 
-    case "CART_INCREMENT":
+    case "CART_DECREMENT":
       const increment = state.cart.map((el) => {
         if (el.id === action.payload) {
-          let incAmount = el.price + 1;
-        
+
+
+          
           return {
+          
             ...el,
-            amount: incAmount,
           };
-        } else {
-          return el;
         }
+        if(el.id === action.payload){
+          return{
+            ...state,
+            amount:state.amount + 1
+          }
+                }
+        
+        
+        else{
+          return el
+        } 
+        
+       
       });
+
+     
+
+    
 
       return {
         ...state,
         cart: increment,
+       
       };
 
     default:

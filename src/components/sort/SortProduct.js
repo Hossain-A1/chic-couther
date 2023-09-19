@@ -11,7 +11,7 @@ const SortProduct = () => {
           <BsFillGridFill
             className={
               grid_view
-                ? "bg-black text-white lg:text-3xl text-lg  p-1"
+                ? "bg-black text-white lg:text-3xl text-lg duration-150  p-1"
                 : "lg:text-3xl text-lg p-1"
             }
           />
@@ -20,13 +20,12 @@ const SortProduct = () => {
           <BsList
             className={
               !grid_view
-                ? "bg-black text-white lg:text-3xl text-lg p-1 "
+                ? "bg-black text-white lg:text-3xl duration-150 text-lg p-1 "
                 : "lg:text-3xl text-lg p-1"
             }
           />
         </button>
       </div>
-
       <div className='product-data'>dd</div>
 
       {/* sort options */}
@@ -34,7 +33,7 @@ const SortProduct = () => {
         <form action='#' className='border-2 border-violet-700 rounded '>
           <label htmlFor='sort'></label>
           <select
-            title='sort'
+            name='sort'
             id='sort'
             className='lg:px-5 px-2 py-1 space-y-5 lg:text-lg text-sm lg:w-32 w-20'
             onClick={handleSortItem}

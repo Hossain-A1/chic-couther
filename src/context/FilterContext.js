@@ -23,7 +23,9 @@ export const FilterContext = createContext();
 
 export const FilterContextProvider = ({ children }) => {
   const { products } = useProductContext();
+
   const [state, dispatch] = useReducer(filterReducer, initialState);
+  console.log(state.sort_options);
   // =============grid view===================//
   const handleGridView = () => {
     return dispatch({ type: "GRID_VIEW" });
@@ -42,8 +44,8 @@ export const FilterContextProvider = ({ children }) => {
 
   // ===============sort item==================//
   const handleSortItem = (e) => {
-    let value = e.target.value;
-    return dispatch({ type: "SORT_OPTION_ITEM", payload: value });
+    let val = e.target.value;
+    return dispatch({ type: "SORT_OPTION_ITEM", payload: val });
   };
   useEffect(() => {
     dispatch({ type: "SORT_PRODUCTS" });
